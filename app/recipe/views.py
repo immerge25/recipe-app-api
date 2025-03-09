@@ -32,9 +32,9 @@ class RecipeViewSet(viewsets.ModelViewSet):
         serializer.save(user=self.request.user)
 
 
-class TagViewSet(mixins.DestroyModelMixin, 
-                 mixins.UpdateModelMixin, 
-                 mixins.ListModelMixin, 
+class TagViewSet(mixins.DestroyModelMixin,
+                 mixins.UpdateModelMixin,
+                 mixins.ListModelMixin,
                  viewsets.GenericViewSet):
     """Manage tags in the database"""
     serializer_class = serializers.TagSerializer
@@ -45,10 +45,4 @@ class TagViewSet(mixins.DestroyModelMixin,
     def get_queryset(self):
         """Filter queryset to authenticate user"""
         return self.queryset.filter(user=self.request.user).order_by('-name')
-    
-    def test_delete_tag(self):
-        """Test deleting a tag"""
-        tag = Tag.objects.create(user=self.user, name='Breakfast')
 
-        url = detail_url(tag.id)
-        res = self.client.delete(url)
