@@ -45,4 +45,3 @@ class TagViewSet(mixins.DestroyModelMixin,
     def get_queryset(self):
         """Filter queryset to authenticate user"""
         return self.queryset.filter(user=self.request.user).order_by('-name')
-
