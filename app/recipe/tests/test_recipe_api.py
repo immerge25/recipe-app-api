@@ -327,7 +327,7 @@ class PrivateRecipeApiTests(TestCase):
         """Test creating an ingredient when updating a recipe"""
         recipe = create_recipe(user=self.user)
         payload = {'ingredients': [{'name': 'Limes'}]}
-        url = detail_url(recipe.id)        
+        url = detail_url(recipe.id)
         res = self.client.patch(url, payload, format='json')
 
         self.assertEqual(res.status_code, status.HTTP_200_OK)
