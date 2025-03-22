@@ -48,7 +48,7 @@ class RecipeViewSet(viewsets.ModelViewSet):
         """Retrieve recepes for authenticated user"""
         tags = self.request.query_params.get('tags')
         ingredients = self.request.query_params.get('ingredients')
-        queryset=self.queryset
+        queryset = self.queryset
         if tags:
             tag_ids = self._params_to_ints(tags)
             queryset = queryset.filter(tags__id__in=tag_ids)
@@ -107,7 +107,7 @@ class BaseRecipeAttrViewSet(mixins.DestroyModelMixin,
 
     def get_queryset(self):
         """Filter queryset to authenticated user"""
-        assigned_only = bool (
+        assigned_only = bool(
             int(self.request.query_params.get('assigned_only', 0))
         )
         queryset = self.queryset
